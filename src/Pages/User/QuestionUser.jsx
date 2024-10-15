@@ -72,6 +72,7 @@ export default function QuestionUser() {
             <option value="">PUBLIC</option>
             <option value="">PRIVATE</option>
           </select>
+          
           <button className="transform transition-transform duration-75 hover:scale-110 shadow-lg border rounded-lg hover:bg-[#e26c22] hover:border-[#e26c22] p-1 w-[400px]">
             SEND
           </button>

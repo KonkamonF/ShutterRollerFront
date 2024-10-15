@@ -39,7 +39,7 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
     const isError = validateRegister(form);
     if (isError) {
       setError(isError);
-      return console.log(error.confirmPassword);
+      return console.log(error.email);
     }
     await apiRegister(form);
     setIsShowRegister(false);
@@ -52,8 +52,8 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
           onClick={() => setIsShowRegister(false)}
           className="fixed top-0 z-50 w-screen h-screen flex items-center justify-center bg-[#49963640] text-white "
         >
-          <div className="relative">
-            <div className="flex justify-center shadow-xl bg-[#e26c22] absolute top-[-75px] right-[40%] rounded-full p-8">
+          <div className="relative mt-20">
+            <div className="flex justify-center shadow-xl bg-[#e26c22] absolute top-[-75px] left-[38%] rounded-full p-8">
               <RiChatSmile3Fill size={60} color="#E5E483" />
             </div>
             <div
@@ -161,7 +161,7 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
                 </form>
                 <div className="flex flex-col gap-4 text-sm">
                   OR CONTINUE WITH
-                  <div className="flex justify-center gap-4 cursor-pointer pb-8 text-[#481E14]">
+                  <div className="flex justify-center gap-4 cursor-pointer pb-6 text-[#481E14]">
                     <FaFacebook
                       size={30}
                       className=" transform transition-transform duration-75 hover:scale-110"

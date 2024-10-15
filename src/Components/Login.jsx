@@ -6,11 +6,16 @@ import { useState } from "react";
 import useUser from "../Contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { RiChatSmile3Fill } from "react-icons/ri";
+import validateRegister from "../Utils/validator";
 
 export default function Login({ setIsShowLogin, setIsShowRegister }) {
   const navigate = useNavigate();
   const { apiLogin, role } = useUser();
   const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState({
     email: "",
     password: "",
   });
@@ -31,6 +36,11 @@ export default function Login({ setIsShowLogin, setIsShowRegister }) {
     try {
       e.stopPropagation();
       e.preventDefault();
+      const isError = validateRegister(form);
+      if (isError) {
+        setError(isError);
+        return console.log(error.email);
+      }
       const role = await apiLogin(form);
       setIsShowLogin(false);
       if (role) roleRedirect(role);
@@ -47,7 +57,7 @@ export default function Login({ setIsShowLogin, setIsShowRegister }) {
           className="fixed top-0 z-50 w-screen h-screen flex items-center bg-[#49963640] justify-center text-white"
         >
           <div className="relative">
-            <div className="flex justify-center shadow-xl absolute top-[-75px] right-[40%] bg-[#e26c22] rounded-full p-8">
+            <div className="flex justify-center shadow-xl absolute top-[-75px] left-[38%] bg-[#e26c22] rounded-full p-8">
               <RiChatSmile3Fill size={60} color="#E5E483" />
             </div>
             <div
@@ -70,6 +80,9 @@ export default function Login({ setIsShowLogin, setIsShowRegister }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="EMAIL"
                   />
+                  <p className="text-sm text-red-800 leading-none">
+                    {error.email}
+                  </p>
                   <input
                     type="password"
                     value={form.password}
@@ -78,6 +91,9 @@ export default function Login({ setIsShowLogin, setIsShowRegister }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="PASSWORD"
                   />
+                  <p className="text-sm text-red-800 leading-none">
+                    {error.password}
+                  </p>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
