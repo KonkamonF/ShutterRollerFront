@@ -1,12 +1,11 @@
 import { FaFacebook } from "react-icons/fa";
-import { ImUserTie } from "react-icons/im";
 import { FaXTwitter } from "react-icons/fa6";
 import { BsInstagram } from "react-icons/bs";
 import { useState } from "react";
 import useUser from "../Contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { RiChatSmile3Fill } from "react-icons/ri";
-import validateRegister from "../Utils/validator";
+import { validateLogin } from "../Utils/validator";
 
 export default function Login({ setIsShowLogin, setIsShowRegister }) {
   const navigate = useNavigate();
@@ -36,10 +35,10 @@ export default function Login({ setIsShowLogin, setIsShowRegister }) {
     try {
       e.stopPropagation();
       e.preventDefault();
-      const isError = validateRegister(form);
+      const isError = validateLogin(form);
       if (isError) {
         setError(isError);
-        return console.log(error.email);
+        return console.log(error);
       }
       const role = await apiLogin(form);
       setIsShowLogin(false);
@@ -69,7 +68,7 @@ export default function Login({ setIsShowLogin, setIsShowRegister }) {
               <div className="text-center flex flex-col gap-4 justify-center">
                 <form
                   action=""
-                  className="flex flex-col  gap-4 items-center pt-[10px] mt-9"
+                  className="flex flex-col  gap-2 items-center pt-[10px] mt-9"
                   onSubmit={submitLogin}
                 >
                   <input
@@ -80,9 +79,9 @@ export default function Login({ setIsShowLogin, setIsShowRegister }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="EMAIL"
                   />
-                  <p className="text-sm text-red-800 leading-none">
+                  <span className="text-sm text-red-800 leading-none">
                     {error.email}
-                  </p>
+                  </span>
                   <input
                     type="password"
                     value={form.password}
@@ -91,9 +90,9 @@ export default function Login({ setIsShowLogin, setIsShowRegister }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="PASSWORD"
                   />
-                  <p className="text-sm text-red-800 leading-none">
+                  <span className="text-sm text-red-800 leading-none">
                     {error.password}
-                  </p>
+                  </span>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();

@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 import P from "../assets/P.png"
 
 export default function MiddleMainUser() {
+  //style={{backgroundImage:`url(${P})`}} className="bg-fixed bg-right text-white"
   return (
     <>
-      <div style={{backgroundImage:`url(${P})`}} className="bg-fixed bg-right text-white">
+      <div className="bg-[#072212] text-white">
         <div className="mx-80 pb-12 pt-12">
           <div className="bg-[#40ff0015] shadow-xl rounded-lg p-8 flex justify-center">
             <img src={ShutterRoller} alt="" className="w-[40%]" />

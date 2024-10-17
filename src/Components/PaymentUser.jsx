@@ -2,6 +2,7 @@ import React from "react";
 import Payment from "../assets/Payment.png";
 
 export default function PaymentUser({ setPayment }) {
+  
   const submitPayment = async (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -60,6 +61,7 @@ export default function PaymentUser({ setPayment }) {
                 </div>
                 <div className="flex justify-center items-center flex-col gap-4">
                   <img src={Payment} alt="" className="w-[300px]" />
+                  <input type="file" accept="image/*" className="rounded-xl border"/>
                   <button className=" hover:bg-[#481E14] hover:border-[#481E14] transform transition-transform duration-75 hover:scale-110 border p-[4px] w-[200px] rounded-md shadow-xl">
                     UPLOAD PAYMENT SLIP
                   </button>

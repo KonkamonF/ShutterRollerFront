@@ -18,49 +18,51 @@ export default function ContactUser({ setContact }) {
           >
             <div className="text-center flex flex-col">
               <div className="flex justify-around gap-8">
-
-              <div className="flex flex-col text-start">
-                <p className="text-3xl text-center font-bold">CONTACT US</p>
-                <p className="text-lg text-center pt-8 pb-4 font-bold">ADDRESS</p>
-                <p>
-                  73/5 Moo 14 <br /> Subdistrict SAKLEK <br /> District SAKLEK
-                  <br />
-                  Provence PHITCHIT 66160
-                </p>
-                <div>
+                <div className="flex flex-col text-start">
+                  <p className="text-3xl text-center font-bold">CONTACT US</p>
                   <p className="text-lg text-center pt-8 pb-4 font-bold">
-                    CONTACT INFORMATION
+                    ADDRESS
                   </p>
-                  <p className="flex gap-4 pb-2">
-                    <FaPhoneVolume size={20} />
-                    081-9733078
+                  <p>
+                    73/5 Moo 14 <br /> Subdistrict SAKLEK <br /> District SAKLEK
+                    <br />
+                    Provence PHITCHIT 66160
                   </p>
-                  <p className="flex gap-3">
-                    <MdMarkEmailUnread size={25} />
-                    pongcharoen11@hotmail.com
-                  </p>
-                </div>
-                <div>
-                  <p className="text-lg text-center pt-8 pb-4 font-bold">
-                    FOLLOW US
-                  </p>
-                  <div className="flex gap-4 justify-center ">
-                    <p className="hover:bg-[#08c60a] rounded-md transform transition-transform duration-75 hover:scale-110">
-                      <FaLine size={40} />
+                  <div>
+                    <p className="text-lg text-center pt-8 pb-4 font-bold">
+                      CONTACT INFORMATION
                     </p>
-                    <p className="hover:bg-[#1a68f8] rounded-md transform transition-transform duration-75 hover:scale-110">
-                      <FaFacebookSquare size={40} />
+                    <p className="flex gap-4 pb-2">
+                      <FaPhoneVolume size={20} />
+                      081-9733078
                     </p>
-                    <p className="hover:bg-[#ff4428] rounded-md transform transition-transform duration-75 hover:scale-110">
-                      <FaMapMarkedAlt size={40} />
+                    <p className="flex gap-3">
+                      <MdMarkEmailUnread size={25} />
+                      pongcharoen11@hotmail.com
                     </p>
                   </div>
+                  <div>
+                    <p className="text-lg text-center pt-8 pb-4 font-bold">
+                      FOLLOW US
+                    </p>
+                    <div className="flex gap-4 justify-center ">
+                      <p className="hover:bg-[#08c60a] rounded-md transform transition-transform duration-75 hover:scale-110">
+                        <FaLine size={40} />
+                      </p>
+                      <p className="hover:bg-[#1a68f8] rounded-md transform transition-transform duration-75 hover:scale-110">
+                        <FaFacebookSquare size={40} />
+                      </p>
+                      <p className="hover:bg-[#ff4428] rounded-md transform transition-transform duration-75 hover:scale-110">
+                        <FaMapMarkedAlt size={40} />
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-center items-center">
+                  <img src={Map} alt="" className="rounded-lg shadow-2xl" />
                 </div>
               </div>
-           <div className="flex justify-center items-center"> 
-            <img src={Map} alt="" className="rounded-lg shadow-2xl" /></div>
             </div>
-              </div>
           </div>
         </div>
       }

@@ -7,7 +7,6 @@ import PaymentUser from "../../Components/PaymentUser";
 export default function ServiceUser() {
   const [service, setService] = useState(false);
   const [payment, setPayment] = useState(false);
-
   return (
     <>
       {service && (

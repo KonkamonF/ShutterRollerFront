@@ -1,16 +1,36 @@
-import { createContext, useContext, useState } from "react";
-import { register, login, allUser } from "../api/apiUser";
+import { createContext, useContext, useEffect, useState } from "react";
+import { register, login, allUser, getUser } from "../api/apiUser";
 import { toast } from "react-toastify";
-import { removeAccessToken, setAccessToken } from "../Utils/Local-storage";
+import {
+  getAccessToken,
+  removeAccessToken,
+  setAccessToken,
+} from "../Utils/Local-storage";
 
 export const UserContext = createContext();
 
 export function UserContextProvider({ children }) {
+  const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const token =getAccessToken()
+    if (!user && token) {
+      userDetail(token);
+    }
+  }, []);
+
+  const userDetail = async (token) => {
+    try {
+      const response = await getUser(token);
+      setUser(response.data.getUser);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const apiRegister = async (form) => {
     try {
-      console.log(form);
       const response = await register(form);
       toast.success("REGISTER SUCCESS");
     } catch (err) {
@@ -21,7 +41,6 @@ export function UserContextProvider({ children }) {
   const apiLogin = async (form) => {
     try {
       const response = await login(form);
-      console.log(response);
       toast.success("LOGIN SUCCESS");
       setAccessToken(response.data.token);
       setRole(response.data.role);
@@ -57,6 +76,7 @@ export function UserContextProvider({ children }) {
     apiAllUser,
     role,
     logOut,
+    user
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

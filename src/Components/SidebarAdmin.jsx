@@ -5,23 +5,22 @@ import useUser from "../Contexts/UserContext";
 import ProfileAdmin from "./ProfileAdmin";
 
 export default function SidebarAdmin() {
-  const { apiAllUser } = useUser();
-  const [member, setMember] = useState([]);
+  // const { apiAllUser } = useUser();
+  // const [member, setMember] = useState([]);
   const [profileAdmin, setProfileAdmin] = useState(false);
 
-  const userName = async () => {
-    try {
-      const response = await apiAllUser();
-      setMember(response);
-      console.log(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const userName = async () => {
+  //   try {
+  //     const response = await apiAllUser();
+  //     setMember(response);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  useEffect(() => {
-    userName();
-  }, []);
+  // useEffect(() => {
+  //   userName();
+  // }, []);
 
   return (
     <>

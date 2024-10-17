@@ -65,7 +65,7 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
               <div className="text-center flex flex-col gap-4 justify-center">
                 <form
                   action=""
-                  className="flex flex-col  gap-4 items-center pt-[10px] mt-9"
+                  className="flex flex-col gap-2 items-center pt-[10px] mt-9"
                   onSubmit={submitRegister}
                 >
                   <input
@@ -76,9 +76,9 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="FIRSTNAME"
                   />
-                  <p className="text-sm text-red-800 leading-none">
+                  <span className="text-sm text-red-800">
                     {error.firstName}
-                  </p>
+                  </span>
                   <input
                     type="text"
                     value={form.lastName}
@@ -87,9 +87,9 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="LASTNAME"
                   />
-                  <p className="text-sm text-red-800 leading-none">
+                  <span className="text-sm text-red-800 ">
                     {error.lastName}
-                  </p>
+                  </span>
                   <input
                     type="text"
                     value={form.phone}
@@ -98,9 +98,7 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="PHONE"
                   />
-                  <p className="text-sm text-red-800 leading-none">
-                    {error.phone}
-                  </p>
+                  <span className="text-sm text-red-800 ">{error.phone}</span>
 
                   <input
                     type="text"
@@ -110,9 +108,7 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="ADDRESS"
                   />
-                  <p className="text-sm text-red-800 leading-none">
-                    {error.address}
-                  </p>
+                  <span className="text-sm text-red-800 ">{error.address}</span>
                   <input
                     type="text"
                     value={form.lineId}
@@ -121,7 +117,7 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="LINE ID"
                   />
-                  <p></p>
+                  <span></span>
                   <input
                     type="email"
                     value={form.email}
@@ -130,9 +126,7 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="E-MAIL"
                   />
-                  <p className="text-sm text-red-800 leading-none">
-                    {error.email}
-                  </p>
+                  <span className="text-sm text-red-800 ">{error.email}</span>
                   <input
                     type="password"
                     value={form.password}
@@ -141,9 +135,9 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="PASSWORD"
                   />
-                  <p className="text-sm text-red-800 leading-none">
+                  <span className="text-sm text-red-800 ">
                     {error.password}
-                  </p>
+                  </span>
                   <input
                     type="password"
                     value={form.confirmPassword}
@@ -152,9 +146,9 @@ export default function Register({ setIsShowRegister, setIsShowLogin }) {
                     className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                     placeholder="CONFIRMPASSWORD"
                   />
-                  <p className="text-sm text-red-800 leading-none">
+                  <span className="text-sm text-red-800 ">
                     {error.confirmPassword}
-                  </p>
+                  </span>
                   <button className=" hover:bg-[#481E14] hover:border-[#481E14] transform transition-transform duration-75 hover:scale-110 border p-[4px] w-[200px] rounded-md shadow-xl">
                     REGISTER
                   </button>
