@@ -30,7 +30,7 @@ export default function NavbarUser() {
 
       {contact && <ContactUser setContact={setContact} />}
 
-      <div className="bg-[#072212] justify-center flex-col text-white flex items-center pt-4">
+      <div className="bg-[#072212] justify-center flex-col left-0 right-0 text-white flex items-center z-40 top-0 fixed">
         <div className="flex items-center gap-16">
           <Link
             to={"/service"}

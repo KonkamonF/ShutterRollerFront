@@ -14,7 +14,7 @@ export function UserContextProvider({ children }) {
   const [role, setRole] = useState(null);
 
   useEffect(() => {
-    const token =getAccessToken()
+    const token = getAccessToken()
     if (!user && token) {
       userDetail(token);
     }

@@ -1,10 +1,10 @@
 import React from 'react'
-import PageNotFoundPicture from "../assets/PageNotFoundPicture.png"
+import not from "../assets/not.gif"
 
 export default function PageNotFound() {
   return (
     <div className='bg-[#072212] flex justify-center py-20'>
-        <img src={PageNotFoundPicture} alt="" />
+        <img src={not} alt="" />
     </div>
   )
 }

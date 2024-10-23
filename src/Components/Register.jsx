@@ -6,7 +6,6 @@ import { useState } from "react";
 import useUser from "../Contexts/UserContext";
 import { RiChatSmile3Fill } from "react-icons/ri";
 import validateRegister from "../Utils/validator";
-import { isError } from "joi";
 
 export default function Register({ setIsShowRegister, setIsShowLogin }) {
   const { apiRegister } = useUser();

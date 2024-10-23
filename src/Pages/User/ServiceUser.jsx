@@ -6,14 +6,17 @@ import PaymentUser from "../../Components/PaymentUser";
 
 export default function ServiceUser() {
   const [service, setService] = useState(false);
-  const [payment, setPayment] = useState(false);
+  // const [payment, setPayment] = useState(false);
+  const [id, setId] = useState(null);
+
+  const getPaid = (paidId) => {
+    setId(paidId);
+  };
+
   return (
     <>
-      {service && (
-        <ServiceUserComponent setService={setService} setPayment={setPayment} />
-      )}
-      {payment && <PaymentUser setPayment={setPayment} />}
-      <div className="bg-[#072212] text-white">
+      {service && <ServiceUserComponent setService={setService} id={getPaid} />}
+      <div className="bg-[#072212] text-white pt-40 pb-14">
         <div className="mx-80 pb-12 pt-12">
           <div className="bg-[#40ff0015] shadow-xl rounded-lg p-8 flex justify-center">
             <img src={ShutterRoller} alt="" className="w-[40%]" />

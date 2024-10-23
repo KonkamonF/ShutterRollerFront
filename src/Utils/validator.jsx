@@ -86,12 +86,38 @@ const productRecord = Joi.object({
   weight: Joi.string().required().messages({
     "string.empty": "Please entry a weight per square meter",
   }),
-  color: Joi.string().allow(''),
-  type: Joi.string().allow('')
+  color: Joi.string().allow(""),
+  type: Joi.string().allow(""),
+  price: Joi.number().allow(""),
 });
 
 export const validateRecord = (input) => {
   const { error } = productRecord.validate(input, {
+    abortEarly: false,
+  });
+  if (error) {
+    const formError = error.details.reduce((prev, curr) => {
+      prev[curr.path[0]] = curr.message;
+      return prev;
+    }, {});
+
+    return formError;
+  }
+  return null;
+};
+
+const questionForm = Joi.object({
+  title: Joi.string().required().messages({
+    "string.empty": "Please entry a title name",
+  }),
+  detail: Joi.string().required().messages({
+    "string.empty": "Please entry a detail name",
+  }),
+  statusQuestion: Joi.string().allow(""),
+});
+
+export const validateQuestion = (input) => {
+  const { error } = questionForm.validate(input, {
     abortEarly: false,
   });
   if (error) {

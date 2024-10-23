@@ -25,13 +25,14 @@ export default function SidebarAdmin() {
   return (
     <>
       {profileAdmin && <ProfileAdmin setProfileAdmin={setProfileAdmin} />}
-      <div className="bg-[#32012F] flex flex-col w-[220px] h-screen text-white m-4 rounded-xl">
+      <div className="bg-[#86003C] flex flex-col w-[220px] h-screen text-white m-4 rounded-xl">
         <div className="text-center flex flex-col items-center gap-6">
           <button
             className="flex flex-col items-center pt-4 gap-4"
             onClick={() => setProfileAdmin(true)}
           >
-            <RiAccountPinCircleFill size={60} color="#e26c22" />
+            <RiAccountPinCircleFill size={60} color="#FFD369" />
+            {/* input name */}
             {/* {member.filter((e) => {
             return <p>{e.firstName}</p>;
           })} */}

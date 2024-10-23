@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 export default function HomeAdmin() {
   return (
     <>
-      <div className="flex bg-[#072212]">
+      <div className="flex bg-[#420516]">
         <SidebarAdmin />
         <div className="flex flex-col">
           <NavbarAdmin />
