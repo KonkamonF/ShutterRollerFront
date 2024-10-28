@@ -42,14 +42,14 @@ export default function QuestionAdmin() {
       {answer && <AnswerAdmin setAnswer={setAnswer} id={id} />}
       <div className="w-full text-white ">
         <form action="" className="py-4 flex justify-center">
-          <input
+          {/* <input
             type="text"
             className="bg-[#420516] rounded-lg border h-8 p-2 mr-4"
             placeholder="SEARCH"
           />
           <button className="rounded-lg h-8 p-2 hover:bg-[#e26c22] hover:border-[#e26c22] cursor-pointer flex justify-center items-center border">
             SEARCH
-          </button>
+          </button> */}
         </form>
         <p className="bg-[#86003C] text-3xl font-bold rounded-lg p-2 text-center">
           USER FQA

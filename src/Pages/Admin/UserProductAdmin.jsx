@@ -22,19 +22,18 @@ export default function UserProductAdmin() {
     apiAllPayment();
   }, []);
 
-
-
+  console.log("allPayments", allPayments);
   return (
     <div className="w-full text-white">
       <form action="" className="py-4 flex justify-center">
-        <input
+        {/* <input
           type="text"
           className="bg-[#420516] rounded-lg border h-8 p-2 mr-4"
           placeholder="SEARCH"
         />
         <button className="rounded-lg h-8 p-2 hover:bg-[#e26c22] hover:border-[#e26c22] cursor-pointer flex justify-center items-center border">
           SEARCH
-        </button>
+        </button> */}
       </form>
       <p className="bg-[#86003C] text-3xl font-bold rounded-lg p-2 text-center">
         USER PRODUCT
@@ -54,33 +53,22 @@ export default function UserProductAdmin() {
           </tr>
         </thead>
         <tbody>
-          {allPayments.map((e, i) => {
+          {record.map((e, i) => {
+            console.log(e);
             return (
               <tr key={e.id} className="bg-[#420516]">
                 <td className="border-collapse border p-2">{i + 1}</td>
                 <td className="border-collapse border p-2">
-                  {e.productRecord.user.firstName}
+                  {e.user.firstName}
                 </td>
+                <td className="border-collapse border p-2">{e.user.phone}</td>
+                <td className="border-collapse border p-2">{e.user.address}</td>
+                <td className="border-collapse border p-2">{e.type}</td>
+                <td className="border-collapse border p-2">{e.color}</td>
+                <td className="border-collapse border p-2">{e.weight}</td>
+                <td className="border-collapse border p-2">{e.high}</td>
                 <td className="border-collapse border p-2">
-                  {e.productRecord.user.phone}
-                </td>
-                <td className="border-collapse border p-2">
-                  {e.productRecord.user.address}
-                </td>
-                <td className="border-collapse border p-2">
-                  {e.productRecord.type}
-                </td>
-                <td className="border-collapse border p-2">
-                  {e.productRecord.color}
-                </td>
-                <td className="border-collapse border p-2">
-                  {e.productRecord.weight}
-                </td>
-                <td className="border-collapse border p-2">
-                  {e.productRecord.high}
-                </td>
-                <td className="border-collapse border p-2">
-                  {e.statusPayment}
+                  {e?.Payment[e.Payment.length-1]?.statusPayment}
                 </td>
               </tr>
             );

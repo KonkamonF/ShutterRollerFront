@@ -89,6 +89,7 @@ const productRecord = Joi.object({
   color: Joi.string().allow(""),
   type: Joi.string().allow(""),
   price: Joi.number().allow(""),
+  payment: Joi.allow(""),
 });
 
 export const validateRecord = (input) => {

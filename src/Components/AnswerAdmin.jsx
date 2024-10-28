@@ -18,6 +18,7 @@ export default function AnswerAdmin({ setAnswer, id }) {
   const hdChange = (e) => {
     setCreateAnswers(e.target.value);
   };
+
   return (
     <>
       <div

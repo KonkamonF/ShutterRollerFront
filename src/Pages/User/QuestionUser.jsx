@@ -7,6 +7,7 @@ export default function QuestionUser() {
   const { apiAllQuestion } = useAdmin();
   const [allQuestion, setAllQuestion] = useState([]);
   const [question, setQuestion] = useState(false);
+  
   const allQuestions = async () => {
     try {
       const question = await apiAllQuestion(getAccessToken());
@@ -35,7 +36,30 @@ export default function QuestionUser() {
             ASK
           </button>
         </div>
-        {allQuestion.map((e, i) => {
+        <div className="flex gap-8 pb-8 px-72">
+          <div className="bg-[#e26c22bb] shadow-xl border rounded-lg p-8 flex flex-col gap-4 w-[80%]">
+            <p className="text-xl">Q : Rolling Shutter Metal High-speed Door</p>
+            <p>
+              Our Metal Caving Insulation Siding Panel has the following
+              characteristics: light dead weight, high mechanical strength,
+              excellent shearing resistant performance, strong corrosion
+              resistance, high durability, etc. The sandwich panel has excellent
+              insulating performance: heat insulation, sound insulation, etc.
+            </p>
+          </div>
+        </div>
+        <div className="flex justify-end gap-8 pb-8 px-72">
+          <div className="bg-[#39991850] shadow-xl border rounded-lg p-8 flex flex-col gap-4 w-[80%]">
+            <p className="text-xl">A : Rolling Shutter Metal High-speed Door</p>
+            <p>
+              The control type for industrial doors can be selected to best suit
+              each application. The basic control type is triple button control,
+              and options available include radio, pull switch, radar and
+              induction loop control.
+            </p>
+          </div>
+        </div>
+        {allQuestion?.map((e, i) => {
           return (
             <>
               <div className="flex gap-8 pb-8 px-72">

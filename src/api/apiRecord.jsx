@@ -56,6 +56,16 @@ export const deleteProduct = (token, id) =>
   });
 
 export const deleteQuestion = (token, id) =>
-  axios.delete(``, {
+  axios.delete(`http://localhost:8000/question/deleted/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+
+export const allRecordShow = (token, userId) => {
+  return axios.post(
+    "http://localhost:8000/service/product/all",
+    { userId: userId },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};

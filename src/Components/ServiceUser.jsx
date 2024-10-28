@@ -5,14 +5,22 @@ import useUser from "../Contexts/UserContext";
 import { validateRecord } from "../Utils/validator";
 import { GrServices } from "react-icons/gr";
 import PaymentUser from "./PaymentUser";
+import { getAccessToken } from "../Utils/Local-storage";
 
-export default function ServiceUserComponent({ setService, id }) {
+export default function ServiceUserComponent({ setService, id, record ,setRecord }) {
   const [payment, setPayment] = useState(false);
   const { user } = useUser();
   const [isEdit, setIsEdit] = useState(false);
-  const { apiCreateRecord, apiAllRecord, apiUpdateProduct, apiDeletedProduct } =
-    useAdmin();
-  const [record, setRecord] = useState([]);
+  const {
+    apiCreateRecord,
+    apiAllRecord,
+    apiAllRecordShow,
+    apiUpdateProduct,
+    apiDeletedProduct,
+    apiAllPayment,
+    allPayments,
+  } = useAdmin();
+
   const [post, setPost] = useState({
     name: "",
     color: "",
@@ -20,6 +28,7 @@ export default function ServiceUserComponent({ setService, id }) {
     weight: "",
     type: "MANUAL",
     price: 0,
+    payment: [],
   });
   const [error, setError] = useState({
     name: "",
@@ -30,23 +39,19 @@ export default function ServiceUserComponent({ setService, id }) {
 
   const allRecord = async () => {
     try {
-      const response = await apiAllRecord();
-      setRecord(response);
+      const result =await apiAllRecordShow(getAccessToken(),user.id);
+      setRecord(result) //
     } catch (err) {
       console.log(err);
     }
   };
 
-  useEffect(() => {
-    allRecord();
-  }, []);
-
   const hdChange = (e) => {
     const value = { ...post, [e.target.name]: e.target.value };
     if (value.type == "MANUAL") {
-      value.price = ((value.weight * value.high) / 100) * 2000;
+      value.price = (value.weight * value.high) * 1800;
     } else {
-      value.price = ((value.weight * value.high) / 100) * 3000;
+      value.price = (value.weight * value.high) * 4500;
     }
     setPost(value);
   };
@@ -54,6 +59,7 @@ export default function ServiceUserComponent({ setService, id }) {
   const submitUpdateService = async (e) => {
     try {
       await apiUpdateProduct(post);
+      await allRecord();
     } catch (err) {
       console.log(err);
     }
@@ -62,8 +68,6 @@ export default function ServiceUserComponent({ setService, id }) {
   const clickDeleted = async () => {
     try {
       await apiDeletedProduct(post.id);
-      await allRecord();
-
       setPost({
         name: "",
         color: "",
@@ -72,7 +76,7 @@ export default function ServiceUserComponent({ setService, id }) {
         type: "MANUAL",
         price: 0,
       });
-
+      await allRecord();
       if (selectRef.current) {
         selectRef.current.value = -1;
       }
@@ -91,13 +95,17 @@ export default function ServiceUserComponent({ setService, id }) {
       }
       console.log(user);
       await apiCreateRecord({ ...post, userId: user?.id });
+
       allRecord();
-      // setService(true);
-      // setPayment(false);
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    apiAllPayment();
+    allRecord();
+  }, []);
 
   if (payment) {
     return <PaymentUser post={post} setPayment={setPayment} />;
@@ -140,6 +148,7 @@ export default function ServiceUserComponent({ setService, id }) {
 
                   <select
                     ref={selectRef}
+                    defaultValue={-1}
                     onChange={(e) => {
                       setPost(record[e.target.value]);
                       setIsEdit(true);
@@ -147,11 +156,15 @@ export default function ServiceUserComponent({ setService, id }) {
                     }}
                     className="bg-[#e26c22]  border p-1 rounded-lg"
                   >
-                    <option value={-1} disabled selected>
+                    <option value={-1} disabled>
                       SELECT TO PAY
                     </option>
                     {record?.map((e, i) => {
-                      return <option value={i}>{e.name}</option>;
+                      return (
+                        <option key={e.id} value={i}>
+                          {e.name}
+                        </option>
+                      );
                     })}
                   </select>
 
@@ -204,34 +217,58 @@ export default function ServiceUserComponent({ setService, id }) {
                   </div>
                 </div>
 
-                <div className="flex gap-4 justify-center">
-                  <label className="transform transition-transform duration-75 hover:scale-110  hover:bg-[#5d5d5d] rounded-lg p-2 bg-gray-500">
+                <div className="flex gap-4 justify-center items-center">
+                  <label
+                    className={`transform transition-transform duration-75 hover:scale-110 rounded-lg p-2 ${
+                      post === "GRAY"
+                        ? "bg-gray-700 text-white"
+                        : "bg-gray-500 hover:bg-[#5d5d5d] text-black"
+                    }`}
+                  >
                     <input
                       name="color"
                       type="radio"
                       value="GRAY"
                       checked={post === "GRAY"}
                       onChange={hdChange}
+                      className="appearance-none h-5 w-5 border border-gray-400 rounded-full checked:bg-gray-800 checked:border-transparent focus:outline-none transition duration-300"
                     />
                   </label>
-                  <label className="transform transition-transform duration-75 hover:scale-110  hover:bg-[#2740bd] rounded-lg p-2 bg-blue-700">
+
+                  <label
+                    className={`transform transition-transform duration-75 hover:scale-110 rounded-lg p-2 ${
+                      post === "BLUE"
+                        ? "bg-blue-900 text-white"
+                        : "bg-blue-700 hover:bg-[#2740bd] text-black"
+                    }`}
+                  >
                     <input
                       name="color"
                       type="radio"
                       value="BLUE"
                       checked={post === "BLUE"}
                       onChange={hdChange}
+                      className="appearance-none h-5 w-5 border border-blue-400 rounded-full checked:bg-blue-900 checked:border-transparent focus:outline-none transition duration-300"
                     />
                   </label>
-                  <label className="transform transition-transform duration-75 hover:scale-110  hover:bg-[#fdf875] rounded-lg p-2 bg-yellow-300">
+
+                  <label
+                    className={`transform transition-transform duration-75 hover:scale-110 rounded-lg p-2 ${
+                      post === "CREAM"
+                        ? "bg-yellow-500 text-white"
+                        : "bg-yellow-300 hover:bg-[#fdf875] text-black"
+                    }`}
+                  >
                     <input
                       name="color"
                       type="radio"
                       value="CREAM"
                       checked={post === "CREAM"}
                       onChange={hdChange}
+                      className="appearance-none h-5 w-5 border border-yellow-400 rounded-full checked:bg-yellow-500 checked:border-transparent focus:outline-none transition duration-300"
                     />
                   </label>
+                  <p>COLOR {post.color} SELECTED</p>
                 </div>
 
                 <div className="flex justify-between pt-4">
@@ -240,7 +277,12 @@ export default function ServiceUserComponent({ setService, id }) {
                     {Number(post?.price)?.toFixed(2)} BATH
                   </p>
                 </div>
-
+                <p>
+                  STATUS :{" "}
+                  {post?.Payment?.length > 0
+                    ? post.Payment[0].statusPayment
+                    : ""}
+                </p>
                 <div className="flex gap-4 items-center flex-col pt-4">
                   {isEdit ? (
                     <button
@@ -248,7 +290,6 @@ export default function ServiceUserComponent({ setService, id }) {
                       className="transform transition-transform duration-75 hover:scale-110 border hover:bg-[#481E14] hover:border-[#481E14] bg-[#481E14] p-[4px] w-[200px] rounded-md shadow-xl"
                       onClick={(e) => {
                         e.stopPropagation();
-                        // setService(false);
                         setPayment(true);
                       }}
                     >

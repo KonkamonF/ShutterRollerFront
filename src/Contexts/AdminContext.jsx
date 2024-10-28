@@ -10,6 +10,8 @@ import {
   updateStatus,
   deleteProduct,
   deleteQuestion,
+  allRecordShow,
+  editedProfile,
 } from "../api/apiRecord";
 import { toast } from "react-toastify";
 import { getAccessToken } from "../Utils/Local-storage";
@@ -24,6 +26,7 @@ export function AdminContextProvider({ children }) {
     try {
       const createdRecord = await createRecord(token, form);
       toast.success("CREATED YOUR RECORD");
+      return createdRecord;
     } catch (err) {
       console.log(err);
       toast.error("TRY TO CREATE RECORD AGAIN");
@@ -33,6 +36,15 @@ export function AdminContextProvider({ children }) {
   const apiAllRecord = async () => {
     try {
       const response = await allRecord();
+      return response.data.allProduct;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const apiAllRecordShow = async (token, userId) => {
+    try {
+      const response = await allRecordShow(token, userId);
       return response.data.allProduct;
     } catch (err) {
       console.log(err);
@@ -151,7 +163,8 @@ export function AdminContextProvider({ children }) {
     apiUpdateProduct,
     apiDeletedProduct,
     allPayments,
-    apiDeletedQuestion
+    apiDeletedQuestion,
+    apiAllRecordShow,
   };
 
   return (

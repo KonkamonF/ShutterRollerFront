@@ -36,7 +36,6 @@ export default function CheckPaymentAdmin() {
 
   useEffect(() => {
     allPayment();
-    apiAllPayment();
   }, []);
 
   return (
@@ -44,14 +43,14 @@ export default function CheckPaymentAdmin() {
       {showSlips && <ShowSlip setShowSlips={setShowSlips} src={image} />}
       <div className="w-full text-white ">
         <form action="" className="py-4 flex justify-center">
-          <input
+          {/* <input
             type="text"
             className="bg-[#420516] rounded-lg border h-8 p-2 mr-4"
             placeholder="SEARCH"
           />
           <button className="rounded-lg h-8 p-2 hover:bg-[#e26c22] hover:border-[#e26c22] cursor-pointer flex justify-center items-center border">
             SEARCH
-          </button>
+          </button> */}
         </form>
         <p className="bg-[#86003C] text-3xl font-bold rounded-lg p-2 text-center">
           CHECK PAYMENT
@@ -110,6 +109,7 @@ export default function CheckPaymentAdmin() {
                     <td className="border-collapse border p-2">
                       <form onSubmit={(event) => submitUpdatePaid(event, e.id)}>
                         <select
+                        defaultValue={e.statusPayment}
                           name="statusPayment"
                           onChange={hdChange}
                           className="bg-[#420516] border p-1 mx-4 rounded-lg"
@@ -123,7 +123,7 @@ export default function CheckPaymentAdmin() {
                       </form>
                     </td>
                     <td className="border-collapse border p-2">
-                      {e.statusPayment}
+                      {e?.statusPayment}
                     </td>
                   </tr>
                 );

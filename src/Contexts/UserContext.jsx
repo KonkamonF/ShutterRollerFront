@@ -14,7 +14,7 @@ export function UserContextProvider({ children }) {
   const [role, setRole] = useState(null);
 
   useEffect(() => {
-    const token = getAccessToken()
+    const token = getAccessToken();
     if (!user && token) {
       userDetail(token);
     }
@@ -24,6 +24,7 @@ export function UserContextProvider({ children }) {
     try {
       const response = await getUser(token);
       setUser(response.data.getUser);
+      setRole(response.data.getUser.role)
     } catch (err) {
       console.log(err);
     }
@@ -44,6 +45,7 @@ export function UserContextProvider({ children }) {
       toast.success("LOGIN SUCCESS");
       setAccessToken(response.data.token);
       setRole(response.data.role);
+      userDetail(response.data.token)
       return response.data.role;
     } catch (err) {
       console.log(err);
@@ -51,9 +53,10 @@ export function UserContextProvider({ children }) {
     }
   };
 
-  const apiAllUser = async () => {
+  const apiAllUser = async (token) => {
     try {
-      const response = await allUser();
+      const response = await allUser(token);
+     
       return response.data.allUser;
     } catch (err) {
       console.log(err);
@@ -76,7 +79,7 @@ export function UserContextProvider({ children }) {
     apiAllUser,
     role,
     logOut,
-    user
+    user,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
