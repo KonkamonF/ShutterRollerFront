@@ -24,7 +24,7 @@ export function UserContextProvider({ children }) {
     try {
       const response = await getUser(token);
       setUser(response.data.getUser);
-      setRole(response.data.getUser.role)
+      setRole(response.data.getUser.role);
     } catch (err) {
       console.log(err);
     }
@@ -45,7 +45,7 @@ export function UserContextProvider({ children }) {
       toast.success("LOGIN SUCCESS");
       setAccessToken(response.data.token);
       setRole(response.data.role);
-      userDetail(response.data.token)
+      userDetail(response.data.token);
       return response.data.role;
     } catch (err) {
       console.log(err);
@@ -56,7 +56,6 @@ export function UserContextProvider({ children }) {
   const apiAllUser = async (token) => {
     try {
       const response = await allUser(token);
-     
       return response.data.allUser;
     } catch (err) {
       console.log(err);

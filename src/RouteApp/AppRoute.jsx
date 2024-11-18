@@ -32,6 +32,7 @@ const route = createBrowserRouter([
       { path: "*", element: <PageNotFound /> },
     ],
   },
+
   {
     path: "/admin",
     element: <ProtectRoute element={<HomeAdmin />} allow={["ADMIN"]} />,

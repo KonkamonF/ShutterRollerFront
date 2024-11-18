@@ -8,7 +8,15 @@ export default function Register() {
   const { apiUpdateProfile, apiAllRecordShow } = useAdmin();
   const { apiAllUser, user } = useUser();
   const [profile, setProfile] = useState([]);
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    address: "",
+    lineId: "",
+    email: "",
+    password: "",
+  });
 
   const allUser = async () => {
     try {
@@ -19,14 +27,36 @@ export default function Register() {
     }
   };
 
-  const hdChange = (e) => {1
+  const hdChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const submitRegister = async (e) => {
     try {
       e.preventDefault();
-      await apiUpdateProfile(form, user?.id);
+      const data = {};
+      if (form.firstName) {
+        data.firstName = form.firstName;
+      }
+      if (form.lastName) {
+        data.lastName = form.lastName;
+      }
+      if (form.phone) {
+        data.phone = form.phone;
+      }
+      if (form.address) {
+        data.address = form.address;
+      }
+      if (form.lineId) {
+        data.lineId = form.lineId;
+      }
+      if (form.email) {
+        data.email = form.email;
+      }
+      if (form.password) {
+        data.password = form.password;
+      }
+      await apiUpdateProfile(data, user?.id);
       await allUser();
     } catch (err) {
       console.log(err);
@@ -45,9 +75,6 @@ export default function Register() {
               action=""
               className="flex flex-col gap-2 items-center pt-[10px] mt-9"
               onSubmit={submitRegister}
-              onChange={(e) => {
-                setForm(profile[e.target.value]);
-              }}
             >
               <p>{user?.firstName}</p>
               <input

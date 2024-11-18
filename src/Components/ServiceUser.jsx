@@ -7,7 +7,12 @@ import { GrServices } from "react-icons/gr";
 import PaymentUser from "./PaymentUser";
 import { getAccessToken } from "../Utils/Local-storage";
 
-export default function ServiceUserComponent({ setService, id, record ,setRecord }) {
+export default function ServiceUserComponent({
+  setService,
+  id,
+  record,
+  setRecord,
+}) {
   const [payment, setPayment] = useState(false);
   const { user } = useUser();
   const [isEdit, setIsEdit] = useState(false);
@@ -39,8 +44,8 @@ export default function ServiceUserComponent({ setService, id, record ,setRecord
 
   const allRecord = async () => {
     try {
-      const result =await apiAllRecordShow(getAccessToken(),user.id);
-      setRecord(result) //
+      const result = await apiAllRecordShow(getAccessToken(), user.id);
+      setRecord(result); //
     } catch (err) {
       console.log(err);
     }
@@ -49,9 +54,9 @@ export default function ServiceUserComponent({ setService, id, record ,setRecord
   const hdChange = (e) => {
     const value = { ...post, [e.target.name]: e.target.value };
     if (value.type == "MANUAL") {
-      value.price = (value.weight * value.high) * 1800;
+      value.price = value.weight * value.high * 1800;
     } else {
-      value.price = (value.weight * value.high) * 4500;
+      value.price = value.weight * value.high * 4500;
     }
     setPost(value);
   };
@@ -93,9 +98,7 @@ export default function ServiceUserComponent({ setService, id, record ,setRecord
         setError(isError);
         return console.log(error);
       }
-      console.log(user);
       await apiCreateRecord({ ...post, userId: user?.id });
-
       allRecord();
     } catch (err) {
       console.log(err);
@@ -291,6 +294,7 @@ export default function ServiceUserComponent({ setService, id, record ,setRecord
                       onClick={(e) => {
                         e.stopPropagation();
                         setPayment(true);
+                        setService(false);
                       }}
                     >
                       DEPOSIT PAYMENT

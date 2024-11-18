@@ -16,7 +16,6 @@ export default function ServiceUser() {
     apiDeletedProduct,
   } = useAdmin();
   const [service, setService] = useState(false);
-  // const [payment, setPayment] = useState(false);
   const [id, setId] = useState(null);
   const [record, setRecord] = useState([]);
   const { user, role } = useUser();
