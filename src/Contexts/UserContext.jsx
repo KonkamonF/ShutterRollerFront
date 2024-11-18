@@ -66,6 +66,7 @@ export function UserContextProvider({ children }) {
     try {
       removeAccessToken();
       setRole(null);
+
       toast.success("LOGOUT SUCCESS");
     } catch (err) {
       toast.error("TRY LOGOUT AGAIN");
@@ -76,6 +77,7 @@ export function UserContextProvider({ children }) {
     apiRegister,
     apiLogin,
     apiAllUser,
+    userDetail,
     role,
     logOut,
     user,

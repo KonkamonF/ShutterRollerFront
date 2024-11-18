@@ -12,7 +12,7 @@ export default function ShowImage({ setShowPicture, src }) {
           onClick={(e) => e.stopPropagation()}
         >
           <p className="text-3xl text-center font-bold pb-10">SHOW IMAGE</p>
-          <img src={src} alt="" className="w-[700px] rounded-lg" />
+          <img src={src} alt="" className="w-[250px] rounded-lg" />
         </div>
       </div>
     </>

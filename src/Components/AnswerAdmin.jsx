@@ -1,15 +1,18 @@
 import { useState } from "react";
 import useAdmin from "../Contexts/AdminContext";
+import { getAccessToken } from "../Utils/Local-storage";
 
 export default function AnswerAdmin({ setAnswer, id }) {
   const [createAnswers, setCreateAnswers] = useState("");
-  const { apiAnswer } = useAdmin();
+  const { apiAnswer,apiAllQuestion } = useAdmin();
 
   const submitCreateAnswer = async (e) => {
     e.preventDefault();
     try {
       let body = { answer: createAnswers };
       const createQuestions = await apiAnswer(body, id);
+      // await apiAllQuestion(getAccessToken())
+      setAnswer(false)
     } catch (err) {
       console.log(err);
     }

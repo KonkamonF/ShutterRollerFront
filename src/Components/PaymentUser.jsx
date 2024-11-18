@@ -3,7 +3,7 @@ import Payment from "../assets/Payment.png";
 import useAdmin from "../Contexts/AdminContext";
 import { IoMdCheckboxOutline } from "react-icons/io";
 
-export default function PaymentUser({ setPayment, post }) {
+export default function PaymentUser({ setPayment, post, setService }) {
   const { apiCreatePayment, apiAllRecord } = useAdmin();
   const file = useRef();
   const [upload, setUpload] = useState(null);
@@ -14,12 +14,13 @@ export default function PaymentUser({ setPayment, post }) {
       console.log("object");
       e.stopPropagation();
       e.preventDefault();
-
       const payload = new FormData();
       payload.append("paymentImg", upload);
       payload.append("productId", post.id);
       await apiCreatePayment(payload);
       setUpload(null);
+      setPayment(false);
+      setService(false);
     } catch (err) {
       console.log(err);
     }

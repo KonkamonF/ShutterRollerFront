@@ -31,7 +31,7 @@ export const createPayment = (token, form) =>
   });
 
 export const editProduct = (token, form, id) =>
-  axios.patch(`http://localhost:8000/service/edited${id}`, form, {
+  axios.patch(`http://localhost:8000/service/edited/${id}`, form, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
@@ -63,6 +63,7 @@ export const deleteQuestion = (token, id) =>
 export const allRecordShow = (token, userId) => {
   return axios.post(
     "http://localhost:8000/service/product/all",
+    // FIX : end point
     { userId: userId },
     {
       headers: { Authorization: `Bearer ${token}` },

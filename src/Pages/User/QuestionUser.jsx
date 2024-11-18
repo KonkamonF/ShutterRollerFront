@@ -10,6 +10,7 @@ export default function QuestionUser() {
   
   const allQuestions = async () => {
     try {
+      console.log(getAccessToken());
       const question = await apiAllQuestion(getAccessToken());
       setAllQuestion(question);
     } catch (err) {
@@ -18,6 +19,7 @@ export default function QuestionUser() {
   };
 
   useEffect(() => {
+    console.log("test question");
     allQuestions();
   }, []);
   return (

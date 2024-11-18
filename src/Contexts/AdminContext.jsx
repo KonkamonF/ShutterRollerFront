@@ -11,6 +11,7 @@ import {
   deleteProduct,
   deleteQuestion,
   allRecordShow,
+  editProduct,
   editedProfile,
 } from "../api/apiRecord";
 import { toast } from "react-toastify";
@@ -61,7 +62,7 @@ export function AdminContextProvider({ children }) {
     }
   };
 
-  const apiAllQuestion = async () => {
+  const apiAllQuestion = async (token) => {
     try {
       const allQuestions = await allQuestion(token);
       return allQuestions.data.totalQuestion;
@@ -123,7 +124,7 @@ export function AdminContextProvider({ children }) {
 
   const apiUpdateProduct = async (form, id) => {
     try {
-      await editedProfile(token, form, id);
+      await editProduct(token, form, id);
       toast.success("UPDATED PRODUCT SUCCESS");
     } catch (err) {
       toast.error("TRY TO UPDATE AGAIN");

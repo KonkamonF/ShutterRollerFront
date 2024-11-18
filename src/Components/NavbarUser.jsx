@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo.png";
 import Login from "./Login";
 import Register from "./Register";
@@ -11,6 +11,7 @@ export default function NavbarUser() {
   const [isShowRegister, setIsShowRegister] = useState(false);
   const [contact, setContact] = useState(false);
   const { role, logOut } = useUser();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -62,13 +63,16 @@ export default function NavbarUser() {
           {role ? (
             <>
               <button
-                onClick={logOut}
+                onClick={() => {
+                  logOut();
+                  navigate("/")
+                }}
                 className="transform transition-transform duration-75 hover:scale-110 flex items-center border-none rounded-xl h-10 p-2 hover:bg-[#e26c22] cursor-pointer"
               >
                 LOGOUT
               </button>
-              <Link to={"/profile"}
-                
+              <Link
+                to={"/profile"}
                 className="transform transition-transform duration-75 hover:scale-110 flex items-center border-none rounded-xl h-10 p-2 hover:bg-[#e26c22] cursor-pointer"
               >
                 PROFILE

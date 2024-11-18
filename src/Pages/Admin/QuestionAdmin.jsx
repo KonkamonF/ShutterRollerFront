@@ -16,6 +16,7 @@ export default function QuestionAdmin() {
     try {
       const questions = await apiAllQuestion(getAccessToken());
       setQuestion(questions);
+      // allQuestion()
     } catch (err) {
       console.log(err);
     }
@@ -34,7 +35,7 @@ export default function QuestionAdmin() {
 
   useEffect(() => {
     allQuestion();
-  }, []);
+  }, [answer]);
 
   return (
     <>

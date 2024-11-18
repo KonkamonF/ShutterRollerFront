@@ -51,6 +51,7 @@ export default function ServiceUser() {
           setRecord={setRecord}
         />
       )}
+    
       <div className="bg-[#072212] text-white pt-40 pb-14">
         <div className="mx-80 pb-12 pt-12">
           <div className="bg-[#40ff0015] shadow-xl rounded-lg p-8 flex justify-center">

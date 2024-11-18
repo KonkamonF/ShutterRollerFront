@@ -7,28 +7,29 @@ import { getAccessToken } from "../../Utils/Local-storage";
 export default function Register() {
   const { apiUpdateProfile, apiAllRecordShow } = useAdmin();
   const { apiAllUser, user } = useUser();
-  const [profile, setProfile] = useState([]);
+  // const [profile, setProfile] = useState([]);
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    address: "",
-    lineId: "",
-    email: "",
-    password: "",
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
+    phone: user?.phone || "",
+    address: user?.address || "",
+    lineId: user?.lineId || "",
+    email: user?.email || "",
+    //  password:""
   });
 
-  const allUser = async () => {
-    try {
-      const response = await apiAllRecordShow(getAccessToken(), user);
-      setProfile(response);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const allUser = async () => {
+  //   try {
+  //     const response = await getUser(getAccessToken());
+  //     setProfile(response);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const hdChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    console.log(form);
   };
 
   const submitRegister = async (e) => {
@@ -53,18 +54,31 @@ export default function Register() {
       if (form.email) {
         data.email = form.email;
       }
-      if (form.password) {
-        data.password = form.password;
-      }
+      // if (form.password) {
+      //   data.password = form.password;
+      // }
       await apiUpdateProfile(data, user?.id);
-      await allUser();
+      // await allUser();
     } catch (err) {
       console.log(err);
     }
   };
+
   useEffect(() => {
-    allUser();
-  }, []);
+    if (user) {
+      setForm({
+        firstName: user?.firstName || "",
+        lastName: user?.lastName || "",
+        phone: user?.phone || "",
+        address: user?.address || "",
+        lineId: user?.lineId || "",
+        email: user?.email || "",
+        //  password:""
+      });
+    }
+    // allUser();
+    console.log("object");
+  }, [user]);
 
   return (
     <>
@@ -76,7 +90,7 @@ export default function Register() {
               className="flex flex-col gap-2 items-center pt-[10px] mt-9"
               onSubmit={submitRegister}
             >
-              <p>{user?.firstName}</p>
+              <label>First Name</label>
               <input
                 type="text"
                 value={form.firstName}
@@ -85,7 +99,7 @@ export default function Register() {
                 className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                 placeholder="FIRSTNAME"
               />
-              <p>{user?.lastName}</p>
+              <label>Last Name</label>
               <input
                 type="text"
                 value={form.lastName}
@@ -94,7 +108,7 @@ export default function Register() {
                 className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                 placeholder="LASTNAME"
               />
-              <p>{user?.phone}</p>
+              <label>Phone</label>
               <input
                 type="text"
                 value={form.phone}
@@ -103,7 +117,7 @@ export default function Register() {
                 className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                 placeholder="PHONE"
               />
-              <p>{user?.address}</p>
+              <label>Address</label>
               <input
                 type="text"
                 value={form.address}
@@ -112,7 +126,7 @@ export default function Register() {
                 className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                 placeholder="ADDRESS"
               />
-              <p>{user?.lineId}</p>
+              <label>Line ID</label>
               <input
                 type="text"
                 value={form.lineId}
@@ -121,7 +135,7 @@ export default function Register() {
                 className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                 placeholder="LINE ID"
               />
-              <p>{user?.email}</p>
+              <label>Email</label>
               <input
                 type="email"
                 value={form.email}
@@ -130,7 +144,7 @@ export default function Register() {
                 className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                 placeholder="E-MAIL"
               />
-              <p>{user?.password}</p>
+              {/* <p>{user?.password}</p>
               <input
                 type="password"
                 value={form.password}
@@ -138,7 +152,7 @@ export default function Register() {
                 onChange={hdChange}
                 className="rounded-lg w-[80%] p-[4px] text-center shadow-md text-[#481E14]"
                 placeholder="PASSWORD"
-              />
+              /> */}
               <button className=" hover:bg-[#481E14] hover:border-[#481E14] transform transition-transform duration-75 hover:scale-110 border p-[4px] w-[200px] rounded-md shadow-xl">
                 UPDATE PROFILE
               </button>

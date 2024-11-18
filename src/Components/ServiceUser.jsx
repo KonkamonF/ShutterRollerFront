@@ -63,7 +63,8 @@ export default function ServiceUserComponent({
 
   const submitUpdateService = async (e) => {
     try {
-      await apiUpdateProduct(post);
+      console.log(post);
+      await apiUpdateProduct(post ,post.id);
       await allRecord();
     } catch (err) {
       console.log(err);
@@ -111,8 +112,16 @@ export default function ServiceUserComponent({
   }, []);
 
   if (payment) {
-    return <PaymentUser post={post} setPayment={setPayment} />;
+    return (
+      <PaymentUser
+        post={post}
+        setPayment={setPayment}
+        setService={setService}
+      />
+    );
   }
+
+  console.log(payment);
 
   return (
     <>
@@ -292,9 +301,8 @@ export default function ServiceUserComponent({
                       type="button"
                       className="transform transition-transform duration-75 hover:scale-110 border hover:bg-[#481E14] hover:border-[#481E14] bg-[#481E14] p-[4px] w-[200px] rounded-md shadow-xl"
                       onClick={(e) => {
-                        e.stopPropagation();
+                        // e.stopPropagation();
                         setPayment(true);
-                        setService(false);
                       }}
                     >
                       DEPOSIT PAYMENT
