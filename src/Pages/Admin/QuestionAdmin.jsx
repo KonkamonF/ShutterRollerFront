@@ -24,9 +24,9 @@ export default function QuestionAdmin() {
   const hdGetId = async (itemsId) => {
     setId(itemsId.id);
   };
-  const clickedDeleted = async () => {
+  const clickedDeleted = async (question) => {
     try {
-      await apiDeletedQuestion(question.id);
+      await apiDeletedQuestion(question);
       allQuestion();
     } catch (err) {
       console.log(err);
@@ -112,7 +112,7 @@ export default function QuestionAdmin() {
                     <td className="border-collapse border p-2">{e.answer}</td>
                     <td className="border-collapse border p-2">
                       <button
-                        onClick={(e) => clickedDeleted(e.id)}
+                        onClick={() => clickedDeleted(e.id)}
                         className="bg-[#420516] border p-1 rounded-lg hover:bg-[#e26c22] hover:border-[#e26c22]"
                       >
                         x

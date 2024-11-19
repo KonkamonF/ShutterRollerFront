@@ -50,6 +50,7 @@ export default function AskingUser({ setCloseQuestion }) {
 
       setQuestion(initialInput);
       setUpload(null);
+      setCloseQuestion(false)
     } catch (error) {
       console.log(error);
     }

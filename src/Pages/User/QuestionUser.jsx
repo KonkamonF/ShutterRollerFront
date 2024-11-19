@@ -19,9 +19,9 @@ export default function QuestionUser() {
   };
 
   useEffect(() => {
-    console.log("test question");
+   
     allQuestions();
-  }, []);
+  }, [question]);
   return (
     <>
       {question && <AskingUser setCloseQuestion={setQuestion} />}
