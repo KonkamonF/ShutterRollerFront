@@ -59,7 +59,7 @@ export default function QuestionAdmin() {
           <thead>
             <tr className="bg-[#e26c22]">
               <th className="border-collapse border p-2">ID</th>
-              <th className="border-collapse border p-2">FIRSTNAME</th>
+              <th className="border-collapse border p-2">FIRST NAME</th>
               <th className="border-collapse border p-2">PHONE</th>
               <th className="border-collapse border p-2">ADDRESS</th>
               <th className="border-collapse border p-2">TITLE QUESTION</th>
