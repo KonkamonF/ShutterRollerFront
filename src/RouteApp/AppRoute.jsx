@@ -12,7 +12,7 @@ import MainHomeUser from "../Pages/User/MainHomeUser";
 import QuestionAdmin from "../Pages/Admin/QuestionAdmin";
 import PageNotFound from "../Utils/PageNotFound";
 import ProtectRoute from "./ProtectRoute";
-import Unauthorization from "../Utils/unauthorization";
+import Unauthorization from "../Utils/Unauthorization";
 
 const route = createBrowserRouter([
   {
