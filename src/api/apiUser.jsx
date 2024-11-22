@@ -1,17 +1,19 @@
 import axios from "axios";
+const URL = import.meta.env.VITE_API_URL
+
 
 export const register = (form) =>
-  axios.post("http://localhost:8000/auth/register", form);
+  axios.post(`${URL}/auth/register`, form);
 
 export const login = (form) =>
-  axios.post("http://localhost:8000/auth/login", form);
+  axios.post(`${URL}/auth/login`, form);
 
 export const allUser = (token) =>
-  axios.get("http://localhost:8000/auth/user", {
+  axios.get(`${URL}/auth/user`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
 export const getUser = (token) =>
-  axios.get("http://localhost:8000/auth/getuser", {
+  axios.get(`${URL}/auth/getuser`, {
     headers: { Authorization: `Bearer ${token}` },
   });
