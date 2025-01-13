@@ -133,7 +133,7 @@ export default function AskingUser({ setCloseQuestion }) {
                 }}
               />
               {upload ? (
-                <div className="w-[500px]">
+                <div className="w-[200px]">
                   <img src={URL.createObjectURL(upload)} />
                 </div>
               ) : null}
